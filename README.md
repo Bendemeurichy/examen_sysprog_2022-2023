@@ -7,10 +7,10 @@ Tijdens het examen is het gebruik van ondersteunende extensies, zoals bijvoorbee
 ## Beginnen
 
 1. Start een terminal.
-1. Download de opgave repository. Geef je UGent gebruikersnaam (`{{students[0].username}}`) en wachtwoord in wanneer dit gevraagd wordt.
+1. Download de opgave repository. Geef je UGent gebruikersnaam (`bdmeuric`) en wachtwoord in wanneer dit gevraagd wordt.
 
    ```bash
-   git clone {{clone_url}}
+   git clone https://github.ugent.be/sysprog-examen-2023-02/sysprog-examen-2023-02-bdmeuric.git
    ```
 
 1. Open het examen in VSCode vanuit Ubuntu.
@@ -18,7 +18,7 @@ Tijdens het examen is het gebruik van ondersteunende extensies, zoals bijvoorbee
    **Belangrijk: Het examen dient geopend te worden met het `examen.code-workspace` bestand!**
 
    ```bash
-   code {{repo.name}}/examen.code-workspace
+   code sysprog-examen-2023-02-bdmeuric/examen.code-workspace
    ```
 
 1. Kies "Yes, I trust the authors", zodat VSCode de regular mode gebruikt.
@@ -34,7 +34,7 @@ Tijdens het examen is het gebruik van ondersteunende extensies, zoals bijvoorbee
 
    **Stop deze taak nooit tijdens het examen!**
 
-1. Controleer op <{{clone_url}}> of het `gestart.txt` bestand aangepast is.
+1. Controleer op <https://github.ugent.be/sysprog-examen-2023-02/sysprog-examen-2023-02-bdmeuric.git> of het `gestart.txt` bestand aangepast is.
 
 Tijdens het examen zullen de wijzigingen iedere tien minuten ingediend worden. Je kan dit zelf ook manueel doen door middel van de task "manueel indienen". Om zeker te zijn dat je geen git conflicten krijgt tijdens het examen mag je **git niet zelf gebruiken** tijdens het examen. Gebruik enkel de tasks om in te dienen.
 
@@ -45,7 +45,7 @@ De opgave staat beschreven in het bestand [`opgave.pdf`](./opgave.pdf).
 ## Indienen
 
 1. Voer de task "manueel indienen" uit (via de menu bovenaan: "Terminal" > "Run Task..." en kies "manueel indienen").
-1. Controleer op <{{clone_url}}> of alle wijzigingen doorgevoerd zijn.
+1. Controleer op <https://github.ugent.be/sysprog-examen-2023-02/sysprog-examen-2023-02-bdmeuric.git> of alle wijzigingen doorgevoerd zijn.
 1. Sluit VSCode af zodat het automatisch indienen stopt.
 
 Vul na het indienen het tijdstip en hash van de laatste commit in op de examenopgave. De hash van jouw laatste commit vind je naast het aantal commits, een voorbeeld:
@@ -54,4 +54,3 @@ Vul na het indienen het tijdstip en hash van de laatste commit in op de examenop
 
 
 Als je jouw code op GitHub ziet staan dan heb je correct ingediend. Je kan zoveel indienen als je wilt. De laatst ingediende code zal verbeterd worden. Na het indienen mag je VSCode op je computer afsluiten. Bij het afsluiten zal het automatisch indienen ook gestopt worden.
-
