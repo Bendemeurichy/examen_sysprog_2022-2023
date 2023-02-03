@@ -22,7 +22,6 @@ quick_map::quick_map(int quick_access_amount) : quick_access_amount(quick_access
 }
 
 quick_map::quick_map(int quick_access_amount, std::pair<const custom_string, double> *elements, int length) : quick_access_amount(quick_access_amount) {
-    node_count=length;
     for (int i=0; i<length;i++){
         insert(elements[i].first,elements[i].second);
     }
@@ -40,6 +39,7 @@ quick_map::~quick_map() {
 
 void quick_map::insert(const custom_string &key, double val) {
     assert(val >= 0);
+
     std::shared_ptr<const node> p1=std::shared_ptr<const node>(new node(key, val));
     internal_map[key] = p1;
     std::shared_ptr<const node> p2=p1;
@@ -62,14 +62,14 @@ void quick_map::insert(const custom_string &key, double val) {
         }
         if (!largest_values[i]) {
             std::shared_ptr<const node> temp = largest_values[i];
-            smallest_values[i] = p2;
+            largest_values[i] = p2;
             p1 = temp;
             temp.reset();
             found=true;
-        } else if ((p2->value) < ((largest_values[i])->value)){
+        } else if ((p2->value) > ((largest_values[i])->value)){
             std::shared_ptr<const node> temp = largest_values[i];
-            smallest_values[i] = p2;
-            p1 = temp;
+            largest_values[i] = p2;
+            p2 = temp;
             temp.reset();
         }
             i++;
