@@ -25,34 +25,45 @@ quick_map::quick_map(int quick_access_amount) : quick_access_amount(quick_access
 quick_map::quick_map(int quick_access_amount, std::pair<const custom_string, double> *elements, int length) : quick_access_amount(quick_access_amount) {
     node_count=length;
     for (int i=0; i<length;i++){
-        std::shared_ptr<const node> p1(new node(elements[i].first,elements[i].second));
-        internal_map[elements[i].first] = p1;
-        for (int j = 0; j < quick_access_amount; j++)
-        {
-            if((p1->value)<((smallest_values[j])->value)){
-                std::shared_ptr<const node> temp=smallest_values[i];
-                smallest_values[i]=p1;
-                p1=temp;
-                temp.reset();
-            }
-            if ((p1->value) < ((largest_values[j])->value)) {
-                std::shared_ptr<const node> temp = smallest_values[i];
-                smallest_values[i] = p1;
-                p1 = temp;
-                temp.reset();
-            }
-        }
-        
+        insert(elements[i].first,elements[i].second);
     }
 }
 
 // TODO: destructor
 quick_map::~quick_map() {
+    for(int i=0;i<quick_access_amount){
+        smallest_values[i].reset();
+        largest_values[i].reset();
+    }
+    internal_map.iterator
+    for (int i=0;i<node_count;i++){
+        
+    }
 }
 
 // TODO: node toevoegen aan de quick_map
 void quick_map::insert(const custom_string &key, double val) {
     assert(val >= 0);
+    std::shared_ptr<const node> p1(new node(key, val));
+    internal_map[key] = p1;
+    for (int i = 0; i < quick_access_amount; i++) {
+        std::shared_ptr<const node> p2 = p1;
+        if ((smallest_values[i] == nullptr || p1->value) < ((smallest_values[i])->value)) {
+            std::shared_ptr<const node> temp = smallest_values[i];
+            smallest_values[i] = p1;
+            p1 = temp;
+            temp.reset();
+        }
+        if (largest_values[i] == nullptr || (p2->value) < ((largest_values[i])->value)) {
+            std::shared_ptr<const node> temp = largest_values[i];
+            smallest_values[i] = p2;
+            p1 = temp;
+            temp.reset();
+        }
+        p2.reset();
+    }
+    p1.reset();
+    node_count++;
 }
 
 // TODO: node met `key` verwijderen uit de quick_map
