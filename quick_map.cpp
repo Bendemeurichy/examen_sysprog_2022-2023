@@ -68,9 +68,21 @@ double quick_map::remove(const custom_string &key) {
         return -1;
     }
     node_count--;
-    std::shared_ptr<node> p1;
-    for(auto it=internal_map.begin;it!=internal_map.end;)
-    return ;
+    
+    auto it =internal_map.begin();
+    std::shared_ptr<const node> p1 = it->second;
+    while(!(p1->key==key)){
+        it++;
+        p1=it->second;
+    }
+    internal_map[p1->key].reset();
+    internal_map.erase(key);
+    double val=p1->value;
+    for(int i=0;i<quick_access_amount;i++){
+        
+    }
+    p1.reset();
+    return val;
 }
 
 // Gegeven: zoek node met `key` in de quick_map
@@ -126,7 +138,6 @@ void quick_map::print_largest_values() const {
     }
 }
 
-// TODO: output stream operator
 std::ostream &operator<<(std::ostream &os, const quick_map &map) {
     os<<"Map (key:<key, value>)\n";
     for(auto it = map.internal_map.begin();it!=map.internal_map.end();it++){
