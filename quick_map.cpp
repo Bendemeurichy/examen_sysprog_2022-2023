@@ -64,7 +64,11 @@ void quick_map::insert(const custom_string &key, double val) {
 
 // TODO: node met `key` verwijderen uit de quick_map
 double quick_map::remove(const custom_string &key) {
-    return -1;
+    if(quick_map::search(key)==-1){
+        return -1;
+    }
+    node_count--;
+
 }
 
 // Gegeven: zoek node met `key` in de quick_map
@@ -122,5 +126,10 @@ void quick_map::print_largest_values() const {
 
 // TODO: output stream operator
 std::ostream &operator<<(std::ostream &os, const quick_map &map) {
+    os<<"Map (key:<key, value>)\n";
+    for(auto it = map.internal_map.begin();it!=map.internal_map.end();it++){
+        os<< it->second->key <<": <"<< it->second->key << ", " << it->second->value <<">";
+    }
+
     return os;
 }
