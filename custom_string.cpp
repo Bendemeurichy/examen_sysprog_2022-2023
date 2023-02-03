@@ -15,7 +15,6 @@ custom_string::custom_string() {
     capacity=0;
 }
 
-// TODO: C-string constructor
 custom_string::custom_string(const char *c_str) {
     length=strlen(c_str);
     content=new char[length+1];

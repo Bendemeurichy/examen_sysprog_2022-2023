@@ -59,23 +59,26 @@ void quick_map::insert(const custom_string &key, double val) {
             smallest_values[i] = p1;
             p1 = temp;
             temp.reset();
-            found=true;
         }
-        if (largest_values[i] == nullptr || (p2->value) < ((largest_values[i])->value)) {
+        if (!largest_values[i]) {
             std::shared_ptr<const node> temp = largest_values[i];
             smallest_values[i] = p2;
             p1 = temp;
             temp.reset();
             found=true;
-            }
-        i++;
+        } else if ((p2->value) < ((largest_values[i])->value)){
+            std::shared_ptr<const node> temp = largest_values[i];
+            smallest_values[i] = p2;
+            p1 = temp;
+            temp.reset();
+        }
+            i++;
     }
     p2.reset();
     p1.reset();
     node_count++;
 }
 
-// TODO: node met `key` verwijderen uit de quick_map
 double quick_map::remove(const custom_string &key) {
     if(quick_map::search(key)==-1){
         return -1;
