@@ -17,25 +17,25 @@ custom_string::custom_string(const char *c_str) {
     length=strlen(c_str);
     content=new char[length+1];
     content=strcpy(content,c_str);
-    
     capacity=length+1;
 }
 
-// TODO: destructor
 custom_string::~custom_string() {
-
+    delete content;
 }
 
-// TODO: copy constructor
-custom_string::custom_string(const custom_string &str) {
+custom_string::custom_string(const custom_string &str):custom_string(str.content) {
+    
 }
 
-// TODO: move constructor
-custom_string::custom_string(custom_string &&str) {
+custom_string::custom_string(custom_string &&str) : content(str.content), length(str.length),capacity(str.capacity) {
+    str.content=nullptr;
 }
 
-// TODO: assignment operator
+
 custom_string &custom_string::operator=(const custom_string &str) {
+    this->content=str.content;
+    this->length=str.
     return *this;
 }
 

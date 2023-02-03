@@ -14,5 +14,13 @@
 		// Automatically save files every second so changes are visible to git.
 		"files.autoSave": "afterDelay",
 		"files.autoSaveDelay": 1000,
+		"files.associations": {
+			"array": "cpp",
+			"bitset": "cpp",
+			"string_view": "cpp",
+			"initializer_list": "cpp",
+			"ranges": "cpp",
+			"utility": "cpp"
+		},
 	}
 }
