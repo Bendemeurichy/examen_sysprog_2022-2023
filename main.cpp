@@ -16,7 +16,7 @@ int main(int argc, char **argv) {
     std::cout << my_string << std::endl;
 
     // Eventueel eigen code om de functionaliteit te testen (staat niet op punten)
-
+    
     /* quick_map */
     // Voorbeelden uit opgave
     quick_map my_quick_map(3);

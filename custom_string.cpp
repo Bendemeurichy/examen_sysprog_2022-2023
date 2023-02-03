@@ -21,6 +21,7 @@ custom_string::custom_string(const char *c_str) {
 }
 
 custom_string::~custom_string() {
+    for(int i=0;i<capacity;i++)
     delete content;
 }
 
@@ -58,17 +59,19 @@ custom_string &custom_string::operator=(custom_string &&str) {
     return *this;
 }
 
-// TODO: comparison operator (alfabetische vergelijking)
 bool custom_string::operator<(const custom_string &str) const {
+    if (std::strcmp(this->content, str.content) < 0) {
+        return true;
+    }
     return false;
 }
 
-// TODO: equality operator
 bool custom_string::operator==(const custom_string &str) const {
-    return false;
+    return std::strcmp(this->content,str.content)==0;
 }
 
 // TODO: output stream operator
 std::ostream &operator<<(std::ostream &os, const custom_string &str) {
+    os<<str.content;
     return os;
 }
