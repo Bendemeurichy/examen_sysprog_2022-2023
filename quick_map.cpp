@@ -13,7 +13,6 @@
 #include <memory>
 #include <utility>
 
-// TODO: constructor 1 (gegeven: quick_access_amount initializer)
 quick_map::quick_map(int quick_access_amount) : quick_access_amount(quick_access_amount) {
     smallest_values=new std::shared_ptr<const node>[quick_access_amount];
     largest_values=new std::shared_ptr<const node>[quick_access_amount];
@@ -23,6 +22,11 @@ quick_map::quick_map(int quick_access_amount) : quick_access_amount(quick_access
 
 // TODO: constructor 2 (gegeven: quick_access_amount initializer)
 quick_map::quick_map(int quick_access_amount, std::pair<const custom_string, double> *elements, int length) : quick_access_amount(quick_access_amount) {
+    node_count=length;
+    for (int i=0; i<length;i++){
+        std::
+        internal_map[elements[i].first]=std::shared_ptr<node>(new node(elements[i].first,elements[i].second));
+    }
 }
 
 // TODO: destructor
