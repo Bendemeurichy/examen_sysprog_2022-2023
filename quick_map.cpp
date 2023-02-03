@@ -21,7 +21,6 @@ quick_map::quick_map(int quick_access_amount) : quick_access_amount(quick_access
     node_count=0;
 }
 
-// TODO: constructor 2 (gegeven: quick_access_amount initializer)
 quick_map::quick_map(int quick_access_amount, std::pair<const custom_string, double> *elements, int length) : quick_access_amount(quick_access_amount) {
     node_count=length;
     for (int i=0; i<length;i++){
@@ -29,22 +28,19 @@ quick_map::quick_map(int quick_access_amount, std::pair<const custom_string, dou
     }
 }
 
-// TODO: destructor
 quick_map::~quick_map() {
-    for(int i=0;i<quick_access_amount){
+    for(int i=0;i<quick_access_amount;i++){
         smallest_values[i].reset();
         largest_values[i].reset();
     }
-    internal_map.iterator
-    for (int i=0;i<node_count;i++){
-        
+    for (auto it = internal_map.begin(); it != internal_map.end(); it++) {
+        it->second.reset();
     }
 }
 
-// TODO: node toevoegen aan de quick_map
 void quick_map::insert(const custom_string &key, double val) {
     assert(val >= 0);
-    std::shared_ptr<const node> p1(new node(key, val));
+    std::shared_ptr<const node> p1=std::shared_ptr<const node>(new node(key, val));
     internal_map[key] = p1;
     for (int i = 0; i < quick_access_amount; i++) {
         std::shared_ptr<const node> p2 = p1;
