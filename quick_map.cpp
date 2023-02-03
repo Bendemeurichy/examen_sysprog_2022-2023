@@ -15,6 +15,10 @@
 
 // TODO: constructor 1 (gegeven: quick_access_amount initializer)
 quick_map::quick_map(int quick_access_amount) : quick_access_amount(quick_access_amount) {
+    smallest_values=new std::shared_ptr<const node>[quick_access_amount];
+    largest_values=new std::shared_ptr<const node>[quick_access_amount];
+    internal_map=std::map<custom_string,std::shared_ptr<const node>>();
+    node_count=0;
 }
 
 // TODO: constructor 2 (gegeven: quick_access_amount initializer)

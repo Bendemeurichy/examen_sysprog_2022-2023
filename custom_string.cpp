@@ -21,8 +21,7 @@ custom_string::custom_string(const char *c_str) {
 }
 
 custom_string::~custom_string() {
-    for(int i=0;i<capacity;i++)
-    delete content;
+    delete [] content;
 }
 
 custom_string::custom_string(const custom_string &str):custom_string(str.content) {
