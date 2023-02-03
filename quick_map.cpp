@@ -12,6 +12,7 @@
 #include <map>
 #include <memory>
 #include <utility>
+#include<algorithm>
 
 quick_map::quick_map(int quick_access_amount) : quick_access_amount(quick_access_amount) {
     smallest_values=new std::shared_ptr<const node>[quick_access_amount];
@@ -25,9 +26,24 @@ quick_map::quick_map(int quick_access_amount, std::pair<const custom_string, dou
     node_count=length;
     for (int i=0; i<length;i++){
         std::shared_ptr<const node> p1(new node(elements[i].first,elements[i].second));
-            internal_map[elements[i].first] = p1;
+        internal_map[elements[i].first] = p1;
+        for (int j = 0; j < quick_access_amount; j++)
+        {
+            if((p1->value)<((smallest_values[j])->value)){
+                std::shared_ptr<const node> temp=smallest_values[i];
+                smallest_values[i]=p1;
+                p1=temp;
+                temp.reset();
+            }
+            if ((p1->value) < ((largest_values[j])->value)) {
+                std::shared_ptr<const node> temp = smallest_values[i];
+                smallest_values[i] = p1;
+                p1 = temp;
+                temp.reset();
+            }
+        }
+        
     }
-    
 }
 
 // TODO: destructor
