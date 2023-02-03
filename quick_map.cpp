@@ -42,23 +42,35 @@ void quick_map::insert(const custom_string &key, double val) {
     assert(val >= 0);
     std::shared_ptr<const node> p1=std::shared_ptr<const node>(new node(key, val));
     internal_map[key] = p1;
-    for (int i = 0; i < quick_access_amount; i++) {
-        std::shared_ptr<const node> p2 = p1;
+    std::shared_ptr<const node> p2=p1;
+    int i=0;
+    bool found = false;
+    while (!found && i<quick_access_amount)
+    {
         
-        if ((smallest_values[i] == nullptr) || (p1->value) < ((smallest_values[i])->value)) {
+        if (!smallest_values[i]) {
             std::shared_ptr<const node> temp = smallest_values[i];
             smallest_values[i] = p1;
             p1 = temp;
             temp.reset();
+            found=true;
+        } else if ((p1->value) < ((smallest_values[i])->value)){
+            std::shared_ptr<const node> temp = smallest_values[i];
+            smallest_values[i] = p1;
+            p1 = temp;
+            temp.reset();
+            found=true;
         }
         if (largest_values[i] == nullptr || (p2->value) < ((largest_values[i])->value)) {
             std::shared_ptr<const node> temp = largest_values[i];
             smallest_values[i] = p2;
             p1 = temp;
             temp.reset();
-        }
-        p2.reset();
+            found=true;
+            }
+        i++;
     }
+    p2.reset();
     p1.reset();
     node_count++;
 }
@@ -149,7 +161,7 @@ void quick_map::print_largest_values() const {
 std::ostream &operator<<(std::ostream &os, const quick_map &map) {
     os<<"Map (key:<key, value>)\n";
     for(auto it = map.internal_map.begin();it!=map.internal_map.end();it++){
-        os<< it->second->key <<": <"<< it->second->key << ", " << it->second->value <<">";
+        os<< it->second->key <<": <"<< it->second->key << ", " << it->second->value <<">\n";
     }
 
     return os;
