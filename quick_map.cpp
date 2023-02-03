@@ -49,6 +49,7 @@ void quick_map::insert(const custom_string &key, double val) {
     {
         
         if (!smallest_values[i]) {
+            std::shared_ptr<const node> temp = smallest_values[i];
             smallest_values[i] = p1;
             p1 = temp;
             temp.reset();
