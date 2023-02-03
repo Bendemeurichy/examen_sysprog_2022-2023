@@ -8,16 +8,22 @@
 #include <cstring>
 #include <iostream>
 
-// TODO: default empty constructor
+
 custom_string::custom_string() {
 }
 
 // TODO: C-string constructor
 custom_string::custom_string(const char *c_str) {
+    length=strlen(c_str);
+    content=new char[length+1];
+    content=strcpy(content,c_str);
+    
+    capacity=length+1;
 }
 
 // TODO: destructor
 custom_string::~custom_string() {
+
 }
 
 // TODO: copy constructor
