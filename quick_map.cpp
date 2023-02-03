@@ -68,7 +68,9 @@ double quick_map::remove(const custom_string &key) {
         return -1;
     }
     node_count--;
-
+    std::shared_ptr<node> p1;
+    for(auto it=internal_map.begin;it!=internal_map.end;)
+    return ;
 }
 
 // Gegeven: zoek node met `key` in de quick_map
