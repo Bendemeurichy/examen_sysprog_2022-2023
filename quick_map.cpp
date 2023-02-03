@@ -21,7 +21,7 @@ quick_map::quick_map(int quick_access_amount) : quick_access_amount(quick_access
     node_count=0;
 }
 
-quick_map::quick_map(int quick_access_amount, std::pair<const custom_string, double> *elements, int length) : quick_access_amount(quick_access_amount) {
+quick_map::quick_map(int quick_access_amount, std::pair<const custom_string, double> *elements, int length) : quick_map(quick_access_amount) {
     for (int i=0; i<length;i++){
         insert(elements[i].first,elements[i].second);
     }
@@ -31,6 +31,8 @@ quick_map::~quick_map() {
     for(int i=0;i<quick_access_amount;i++){
         smallest_values[i].reset();
         largest_values[i].reset();
+        largest_values[i]=nullptr;
+        smallest_values[i]=nullptr;
     }
     for (auto it = internal_map.begin(); it != internal_map.end(); it++) {
         it->second.reset();
