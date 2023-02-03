@@ -10,13 +10,16 @@
 
 
 custom_string::custom_string() {
+    content=nullptr;
+    length=0;
+    capacity=0;
 }
 
 // TODO: C-string constructor
 custom_string::custom_string(const char *c_str) {
     length=strlen(c_str);
     content=new char[length+1];
-    content=strcpy(content,c_str);
+    strcpy(content,c_str);
     capacity=length+1;
 }
 
@@ -35,10 +38,10 @@ custom_string::custom_string(custom_string &&str) : content(str.content), length
 
 custom_string &custom_string::operator=(const custom_string &str) {
     if(this->capacity>=str.capacity){
-        this->content=strcpy(this->content,str.content);
+        strcpy(this->content,str.content);
     } else {
         this->content=new char[str.capacity];
-        this->content=strcpy(this->content,str.content);
+        strcpy(this->content,str.content);
         this->capacity = str.capacity;
     }
     this->length=str.length;

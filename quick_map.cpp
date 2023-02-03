@@ -44,7 +44,8 @@ void quick_map::insert(const custom_string &key, double val) {
     internal_map[key] = p1;
     for (int i = 0; i < quick_access_amount; i++) {
         std::shared_ptr<const node> p2 = p1;
-        if ((smallest_values[i] == nullptr || p1->value) < ((smallest_values[i])->value)) {
+        
+        if ((smallest_values[i] == nullptr) || (p1->value) < ((smallest_values[i])->value)) {
             std::shared_ptr<const node> temp = smallest_values[i];
             smallest_values[i] = p1;
             p1 = temp;
@@ -79,7 +80,14 @@ double quick_map::remove(const custom_string &key) {
     internal_map.erase(key);
     double val=p1->value;
     for(int i=0;i<quick_access_amount;i++){
-        
+        if(smallest_values[i]==p1){
+            smallest_values[i].reset();
+            smallest_values[i]=nullptr;
+        }
+        if(largest_values[i]==p1){
+            largest_values[i].reset();
+            largest_values[i]=nullptr;
+        }
     }
     p1.reset();
     return val;
