@@ -34,13 +34,27 @@ custom_string::custom_string(custom_string &&str) : content(str.content), length
 
 
 custom_string &custom_string::operator=(const custom_string &str) {
-    this->content=str.content;
-    this->length=str.
+    if(this->capacity>=str.capacity){
+        this->content=strcpy(this->content,str.content);
+    } else {
+        this->content=new char[str.capacity];
+        this->content=strcpy(this->content,str.content);
+        this->capacity = str.capacity;
+    }
+    this->length=str.length;
+    
     return *this;
 }
 
-// TODO: move assignment operator
 custom_string &custom_string::operator=(custom_string &&str) {
+    
+    this->content=str.content;
+    str.content=nullptr;
+    this->capacity=str.capacity;
+    str.capacity=0;
+
+    this->length = str.length;
+    str.length=0;
     return *this;
 }
 
