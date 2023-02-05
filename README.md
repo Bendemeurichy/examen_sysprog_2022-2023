@@ -1,4 +1,5 @@
 # Examen Systeemprogrammeren 03/02/2023
+## mijn oplossing voor sysprog examen 03/02/2023. Werkt volledig, enkel nog een aantal memleaks in de quickmap.
 
 ## VSCode extensies
 
