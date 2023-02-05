@@ -12,7 +12,6 @@
 #include <map>
 #include <memory>
 #include <utility>
-#include<algorithm>
 
 quick_map::quick_map(int quick_access_amount) : quick_access_amount(quick_access_amount) {
     smallest_values=new std::shared_ptr<const node>[quick_access_amount];
@@ -37,6 +36,9 @@ quick_map::~quick_map() {
     for (auto it = internal_map.begin(); it != internal_map.end(); it++) {
         it->second.reset();
     }
+    smallest_values->reset();
+    largest_values->reset();
+
 }
 
 void quick_map::insert(const custom_string &key, double val) {
